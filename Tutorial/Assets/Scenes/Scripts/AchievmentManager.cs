@@ -13,7 +13,7 @@ public class AchievmentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateAchievment("General", "TestTitle", "This is the description", 5, 0); //This will create a new achievment on the general category along with a title and description with a number value that represents points        
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0); //This will create a new achievment on the general category along with a title and description with a number value that represents points then another value that represents the sprite position      
     }
 
     // Update is called once per frame
