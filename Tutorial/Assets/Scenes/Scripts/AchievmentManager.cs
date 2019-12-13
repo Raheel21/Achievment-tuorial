@@ -36,11 +36,17 @@ public class AchievmentManager : MonoBehaviour
        achievment.transform.GetChild(1).GetComponent<Text>().text = description;//This is getting the next child from the achievment gameobject along with the text component from unity for the child which is called description 
        achievment.transform.GetChild(2).GetComponent<Text>().text = points.ToString();//This is getting the next child from the achievment gameobject along with the text component from unity and changing it to string as it will have a number value for the child which is called points
        achievment.transform.GetChild(3).GetComponent<Image>().sprite = sprites[spriteIndex];//This is getting the next child from the achievment gameobject along with the image component from unity and changing it to the sprite index which
+    }
 
-
-
+    public void ChangeCategory(GameObject button)
+    {
+        AchievmentButton achievmentButton = button.GetComponent<AchievmentButton>(); 
 
     }
+
+
+
+
 
 
 
