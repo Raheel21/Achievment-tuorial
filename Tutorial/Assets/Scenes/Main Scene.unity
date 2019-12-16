@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 456834399}
   - component: {fileID: 456834398}
   - component: {fileID: 456834397}
+  - component: {fileID: 456834401}
   m_Layer: 5
   m_Name: OtherBtn
   m_TagString: Untagged
@@ -367,6 +368,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456834396}
   m_CullTransparentMesh: 0
+--- !u!114 &456834401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456834396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec411bc8c1add40847fef0fb37065b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievmentList: {fileID: 1159657148}
+  neutral: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  highlight: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &512492183
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achivementPrefab: {fileID: 7256361243348861310, guid: ea47726369f16bc48aed6975471c3e59,
     type: 3}
+  sprites: []
 --- !u!4 &512492185
 Transform:
   m_ObjectHideFlags: 0
@@ -1010,6 +1027,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OtherBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 3680403913036855405, guid: 2ba84a80240fa374da7051036c878908,
+        type: 3}
+      propertyPath: m_Text
+      value: Other
+      objectReference: {fileID: 0}
     - target: {fileID: 3680403913060203780, guid: 2ba84a80240fa374da7051036c878908,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1115,11 +1137,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.45684096
       objectReference: {fileID: 0}
-    - target: {fileID: 3680403913036855405, guid: 2ba84a80240fa374da7051036c878908,
-        type: 3}
-      propertyPath: m_Text
-      value: Other
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba84a80240fa374da7051036c878908, type: 3}
 --- !u!224 &1369124083
@@ -1157,6 +1174,7 @@ GameObject:
   - component: {fileID: 1392242802}
   - component: {fileID: 1392242801}
   - component: {fileID: 1392242800}
+  - component: {fileID: 1392242804}
   m_Layer: 5
   m_Name: GeneralBtn
   m_TagString: Untagged
@@ -1267,6 +1285,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392242799}
   m_CullTransparentMesh: 0
+--- !u!114 &1392242804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392242799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccec411bc8c1add40847fef0fb37065b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievmentList: {fileID: 2043550086}
+  neutral: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  highlight: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1483797924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,6 +1915,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GeneralBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 3680403913036855405, guid: 2ba84a80240fa374da7051036c878908,
+        type: 3}
+      propertyPath: m_Text
+      value: General
+      objectReference: {fileID: 0}
     - target: {fileID: 3680403913060203780, guid: 2ba84a80240fa374da7051036c878908,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1986,11 +2024,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.45684096
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680403913036855405, guid: 2ba84a80240fa374da7051036c878908,
-        type: 3}
-      propertyPath: m_Text
-      value: General
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba84a80240fa374da7051036c878908, type: 3}
