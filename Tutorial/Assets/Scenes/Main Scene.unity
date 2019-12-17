@@ -426,6 +426,7 @@ MonoBehaviour:
   achivementPrefab: {fileID: 7256361243348861310, guid: ea47726369f16bc48aed6975471c3e59,
     type: 3}
   sprites: []
+  scrollRect: {fileID: 819943407}
 --- !u!4 &512492185
 Transform:
   m_ObjectHideFlags: 0

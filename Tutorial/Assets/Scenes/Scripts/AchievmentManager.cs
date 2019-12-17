@@ -10,6 +10,10 @@ public class AchievmentManager : MonoBehaviour
 
     public Sprite[] sprites; //This is used to make a sprite array 
 
+    private AchievmentButton activeButton;
+
+    public ScrollRect scrollRect; 
+
     // Start is called before the first frame update
     void Start()
     {
