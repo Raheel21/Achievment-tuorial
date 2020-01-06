@@ -12,16 +12,55 @@ public class AchievmentManager : MonoBehaviour
 
     private AchievmentButton activeButton;
 
-    public ScrollRect scrollRect; 
+    public ScrollRect scrollRect;
+
+    public GameObject achievmentMenu;
 
     // Start is called before the first frame update
     void Start()
     {
+        activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievmentButton>();
         CreateAchievment("General", "TestTitle", "This is the description", 5, 0); //This will create a new achievment on the general category along with a title and description with a number value that represents points then another value that represents the sprite position      
-    }
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("General", "TestTitle", "This is the description", 5, 0);
+
+
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+        CreateAchievment("Other", "TestTitle", "This is the description", 5, 0);
+
+        foreach (GameObject achievmentList in GameObject.FindGameObjectsWithTag("AchievmentList"))
+        {
+            achievmentList.SetActive(false);
+
+        }
+  
+        activeButton.Click();
+
+        achievmentMenu.SetActive(false); 
+    } 
 
     // Update is called once per frame
-    void Update() { }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            achievmentMenu.SetActive(!achievmentMenu.activeSelf); 
+
+        }
+
+
+
+
+    }
 
     public void CreateAchievment(string category, string title, string description, int points, int spriteIndex) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
     {
@@ -44,7 +83,14 @@ public class AchievmentManager : MonoBehaviour
 
     public void ChangeCategory(GameObject button)
     {
-        AchievmentButton achievmentButton = button.GetComponent<AchievmentButton>(); 
+        AchievmentButton achievmentButton = button.GetComponent<AchievmentButton>();
+
+        scrollRect.content = achievmentButton.achievmentList.GetComponent<RectTransform>();
+
+        achievmentButton.Click();
+        activeButton.Click();
+        activeButton = achievmentButton; 
+
 
     }
 
