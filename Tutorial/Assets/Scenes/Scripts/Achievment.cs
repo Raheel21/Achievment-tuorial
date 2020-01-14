@@ -5,11 +5,13 @@ using UnityEngine;
 public class Achievment
 {
     private string name;
-    
-    
 
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
 
-
+    }
 
     private string description;
 
@@ -23,7 +25,7 @@ public class Achievment
 
     public Achievment(string name, string description, int points, int spriteIndex, GameObject achievmentRef)
     {
-        this.name = name;
+        this.Name = name;
         this.description = description;
         this.unlocked = false;
         this.points = points;
@@ -31,6 +33,8 @@ public class Achievment
         this.achievmentRef = achievmentRef; 
 
     }
+
+   
 
     public bool EarnAchievment()
     {
