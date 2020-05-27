@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -55,7 +54,8 @@ public class Achievment
         this.Unlocked = false;
         this.Points = points;
         this.SpriteIndex = spriteIndex;
-        this.achievmentRef = achievmentRef; 
+        this.achievmentRef = achievmentRef;
+        LoadAchievment(); 
 
     }
 
@@ -67,15 +67,60 @@ public class Achievment
 
         if (!Unlocked)
         {
-
             achievmentRef.GetComponent<Image>().sprite = AchievmentManager.Instance.unlockedSprite; 
-
-
-
-            Unlocked = true;
+            SaveAchievment(true);
             return true; 
+        }
+           return false;  
+    }
+
+
+    public void SaveAchievment(bool value)
+    {
+        unlocked = value;
+
+        int tmpPoints = PlayerPrefs.GetInt("Points");
+
+        PlayerPrefs.SetInt("Points", tmpPoints += points);
+
+        PlayerPrefs.SetInt(name, value ? 1 : 0);
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadAchievment()
+    {
+        unlocked = PlayerPrefs.GetInt(name) == 1 ? true : false;
+
+        if (unlocked)
+        {
+            AchievmentManager.Instance.textPoints.text = "Points: " + PlayerPrefs.GetInt("Points");
+            achievmentRef.GetComponent<Image>().sprite = AchievmentManager.Instance.unlockedSprite;
 
         }
-           return false; 
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

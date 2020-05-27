@@ -22,6 +22,8 @@ public class AchievmentManager : MonoBehaviour
 
     public Sprite unlockedSprite;
 
+    public Text textPoints; 
+
     private static AchievmentManager instance;
 
     public static AchievmentManager Instance
@@ -47,6 +49,9 @@ public class AchievmentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        PlayerPrefs.DeleteAll();
+
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievmentButton>();
         CreateAchievment("General", "Press W", "Press W to unlock this achievment", 5, 0); //This will create a new achievment on the general category along with a title and description with a number value that represents points then another value that represents the sprite position      
 
@@ -63,7 +68,7 @@ public class AchievmentManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+      {
         if (Input.GetKeyDown(KeyCode.I))
         {
             achievmentMenu.SetActive(!achievmentMenu.activeSelf); 
@@ -97,7 +102,8 @@ public class AchievmentManager : MonoBehaviour
         if (achievments[title].EarnAchievment())
         {
             GameObject achievment = (GameObject)Instantiate(visualAchievment);
-            SetAchievmentInfo("EarnCanvas", achievment, title); 
+            SetAchievmentInfo("EarnCanvas", achievment, title);
+            textPoints.text = "Points: " + PlayerPrefs.GetInt("Points"); 
             StartCoroutine(HideAchievment(achievment)); 
         }
     }
