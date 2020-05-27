@@ -18,7 +18,28 @@ public class AchievmentManager : MonoBehaviour
 
     public GameObject visualAchievment;
 
-    public Dictionary<string, Achievment> achievments = new Dictionary<string, Achievment>(); 
+    public Dictionary<string, Achievment> achievments = new Dictionary<string, Achievment>();
+
+    public Sprite unlockedSprite;
+
+    private static AchievmentManager instance;
+
+    public static AchievmentManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+
+                instance = GameObject.FindObjectOfType<AchievmentManager>();
+            }
+            return AchievmentManager.instance; 
+
+        }
+
+    }
+
+
 
 
 
@@ -76,6 +97,7 @@ public class AchievmentManager : MonoBehaviour
         if (achievments[title].EarnAchievment())
         {
             GameObject achievment = (GameObject)Instantiate(visualAchievment);
+            SetAchievmentInfo("EarnCanvas", achievment, title); 
             StartCoroutine(HideAchievment(achievment)); 
         }
     }
@@ -92,7 +114,7 @@ public class AchievmentManager : MonoBehaviour
 
 
 
-    public void CreateAchievment(string category, string title, string description, int points, int spriteIndex) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
+    public void CreateAchievment(string parent, string title, string description, int points, int spriteIndex) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
     {
         GameObject achievment = (GameObject)Instantiate(achivementPrefab); //This will be making a new achievment  
 
@@ -100,7 +122,7 @@ public class AchievmentManager : MonoBehaviour
 
         achievments.Add(title, newAchievment);   
 
-        SetAchievmentInfo(category, achievment,title,description,points, spriteIndex); //For this im adding the category with the title description and points from the achievment info function 
+        SetAchievmentInfo(parent, achievment, title); //For this im adding the category with the title description and points from the achievment info function 
 
 
     }                     
@@ -111,9 +133,9 @@ public class AchievmentManager : MonoBehaviour
        achievment.transform.SetParent(GameObject.Find(parent).transform);//This will be setting the achievment to a set parent then it will be find a game object then put it in the category which will then set the transform of the category of the achievment  
        achievment.transform.localScale = new Vector3(1, 1, 1);//This is setting a new scale for my game object achievment
        achievment.transform.GetChild(0).GetComponent<Text>().text = title;//This is getting the child from the achievment along with the text component from unity for the child which is called title 
-       achievment.transform.GetChild(1).GetComponent<Text>().text = achievments[title].;//This is getting the next child from the achievment gameobject along with the text component from unity for the child which is called description 
-       achievment.transform.GetChild(2).GetComponent<Text>().text = points.ToString();//This is getting the next child from the achievment gameobject along with the text component from unity and changing it to string as it will have a number value for the child which is called points
-       achievment.transform.GetChild(3).GetComponent<Image>().sprite = sprites[spriteIndex];//This is getting the next child from the achievment gameobject along with the image component from unity and changing it to the sprite index which
+       achievment.transform.GetChild(1).GetComponent<Text>().text = achievments[title].Description;//This is getting the next child from the achievment gameobject along with the text component from unity for the child which is called description 
+       achievment.transform.GetChild(2).GetComponent<Text>().text = achievments[title].Points.ToString();//This is getting the next child from the achievment gameobject along with the text component from unity and changing it to string as it will have a number value for the child which is called points
+       achievment.transform.GetChild(3).GetComponent<Image>().sprite = sprites[achievments[title].SpriteIndex];//This is getting the next child from the achievment gameobject along with the image component from unity and changing it to the sprite index which
     }
 
     public void ChangeCategory(GameObject button)
