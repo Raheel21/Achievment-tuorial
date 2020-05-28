@@ -120,7 +120,7 @@ public class AchievmentManager : MonoBehaviour
 
 
 
-    public void CreateAchievment(string parent, string title, string description, int points, int spriteIndex) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
+    public void CreateAchievment(string parent, string title, string description, int points, int spriteIndex, string[] dependencies =null) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
     {
         GameObject achievment = (GameObject)Instantiate(achivementPrefab); //This will be making a new achievment  
 
@@ -129,6 +129,24 @@ public class AchievmentManager : MonoBehaviour
         achievments.Add(title, newAchievment);   
 
         SetAchievmentInfo(parent, achievment, title); //For this im adding the category with the title description and points from the achievment info function 
+
+        if (dependencies != null)
+        {
+
+            foreach (string achievmentTitle in dependencies)
+            {
+                Achievment dependency = achievments[achievmentTitle];
+                dependency.Child = title;
+                newAchievment.AddDependency(achievments[achievmentTitle]);
+
+            }
+
+
+        }
+
+
+
+
 
 
     }                     

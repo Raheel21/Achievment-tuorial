@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic; 
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -37,6 +38,14 @@ public class Achievment
         set { spriteIndex = value; }
     }
 
+    public string Child
+    {
+        get { return child; }
+        set { child = value; }
+
+
+    }
+
     private string description;
 
     private bool unlocked;
@@ -45,7 +54,11 @@ public class Achievment
 
     private int spriteIndex;
 
-    private GameObject achievmentRef; 
+    private GameObject achievmentRef;
+
+    private List<Achievment> dependencies = new List<Achievment>();
+
+    private string child;
 
     public Achievment(string name, string description, int points, int spriteIndex, GameObject achievmentRef)
     {
@@ -59,18 +72,30 @@ public class Achievment
 
     }
 
-   
+    public void AddDependency(Achievment dependendency)
+    {
+        dependencies.Add(dependendency);
 
-    public bool EarnAchievment()
+    }
+
+
+      public bool EarnAchievment()
     {
 
 
-        if (!Unlocked)
+        if (!Unlocked && !dependencies.Exists(x => x.unlocked == false))
         {
             achievmentRef.GetComponent<Image>().sprite = AchievmentManager.Instance.unlockedSprite; 
             SaveAchievment(true);
+
+            if (child != null)
+            {
+                AchievmentManager.Instance.EarnAchievment(child);
+
+            }
             return true; 
         }
+
            return false;  
     }
 
