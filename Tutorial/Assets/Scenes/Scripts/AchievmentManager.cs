@@ -26,6 +26,8 @@ public class AchievmentManager : MonoBehaviour
 
     private static AchievmentManager instance;
 
+    private int fadeTime = 2; 
+
     public static AchievmentManager Instance
     {
         get
@@ -41,19 +43,14 @@ public class AchievmentManager : MonoBehaviour
 
     }
 
-
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
-
-        PlayerPrefs.DeleteAll();
-
         activeButton = GameObject.Find("GeneralBtn").GetComponent<AchievmentButton>();
         CreateAchievment("General", "Press W", "Press W to unlock this achievment", 5, 0); //This will create a new achievment on the general category along with a title and description with a number value that represents points then another value that represents the sprite position      
+        CreateAchievment("General", "Press S", "Press S to unlock this achievment", 5, 0);
+        CreateAchievment("General", "All keys", "Press all keys to unlock this achievment", 10, 0, new string[] { "Press W", "Press S" }); 
+
 
         foreach (GameObject achievmentList in GameObject.FindGameObjectsWithTag("AchievmentList"))
         {
@@ -81,17 +78,11 @@ public class AchievmentManager : MonoBehaviour
             EarnAchievment("Press W"); 
         }
 
+        if (Input.GetKeyDown(KeyCode.S))
+        {
 
-
-
-
-
-
-
-
-
-
-
+            EarnAchievment("Press S");
+        }
 
     }
 
@@ -104,7 +95,7 @@ public class AchievmentManager : MonoBehaviour
             GameObject achievment = (GameObject)Instantiate(visualAchievment);
             SetAchievmentInfo("EarnCanvas", achievment, title);
             textPoints.text = "Points: " + PlayerPrefs.GetInt("Points"); 
-            StartCoroutine(HideAchievment(achievment)); 
+            StartCoroutine(FadeAchievment(achievment)); 
         }
     }
 
@@ -113,12 +104,6 @@ public class AchievmentManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(achievment); 
     }
-
-
-
-
-
-
 
     public void CreateAchievment(string parent, string title, string description, int points, int spriteIndex, string[] dependencies =null) //This will be a function to make a string category to put the achievment under and to find the parent along with adding the title description and points for the achievment 
     {
@@ -143,11 +128,6 @@ public class AchievmentManager : MonoBehaviour
 
 
         }
-
-
-
-
-
 
     }                     
 
@@ -175,11 +155,40 @@ public class AchievmentManager : MonoBehaviour
 
     }
 
+    private IEnumerator FadeAchievment(GameObject achievment)
+    {
+
+        CanvasGroup canvasGroup = achievment.GetComponent<CanvasGroup>();
+
+        float rate = 1.0f / fadeTime;
+
+        int startAlpha = 0;
+        int endAlpha = 1;
+
+        float progress = 0.0f;
+
+        for (int i = 0; i < 2; i++)
+        {
+
+            while (progress < 1.0)
+            {
+                canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, progress);
+
+                progress += rate * Time.deltaTime;
+
+                yield return null;
+
+            }
+
+            yield return new WaitForSeconds(2);
+            startAlpha = 1;
+            endAlpha = 0;
 
 
 
+        }
 
-
-
+       Destroy(achievment); 
+    }
 
 }
